@@ -577,8 +577,8 @@
       text-align: center; margin-top: 12px; line-height: 1.6;
     }
 
-    /* ==========================================================================
-       DESKTOP RESPONSIVE GRID CSS LAYER
+        /* ==========================================================================
+       DESKTOP RESPONSIVE GRID CSS LAYER (FIXED OVERLAP BUG)
        ========================================================================== */
     @media screen and (min-width: 1024px) {
       /* Base wrapper optimization */
@@ -651,49 +651,51 @@
         padding: 32px 40px 40px 40px;
       }
 
-      /* Dashboard split grid layout architecture for Home view components */
+      /* Fixed Dashboard split grid layout architecture for Home view components */
       #view-home {
         display: grid;
         grid-template-columns: 440px 1fr;
-        grid-template-rows: auto auto 1fr;
-        gap: 0 32px;
+        grid-template-rows: auto auto auto;
+        gap: 20px 32px;
         align-content: start;
       }
       #alerts-area {
         grid-column: 1 / -1;
       }
-      .hero-card {
+      #view-home .hero-card {
         grid-column: 1;
         grid-row: 2;
-        margin-bottom: 24px;
+        margin-bottom: 0;
         height: fit-content;
       }
-      .stats-row {
+      #view-home .stats-row {
         grid-column: 1;
         grid-row: 3;
         grid-template-columns: 1fr;
         gap: 16px;
         height: fit-content;
       }
-      .stat-card {
+      #view-home .stat-card {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 18px 24px;
         text-align: left;
       }
-      .stat-label { margin-top: 0; font-size: 12px; }
+      #view-home .stat-label { margin-top: 0; font-size: 12px; }
+      
       #vampire-area {
         grid-column: 2;
         grid-row: 2;
       }
-      .aneco-section {
+      #view-home .aneco-section {
         grid-column: 2;
         grid-row: 3;
-        margin-bottom: 24px;
+        margin-bottom: 0;
       }
-      /* Pushes primary consumer section list dynamically underneath core metrics */
-      .view > .card:last-child {
+      
+      /* Safely target only the Top Consumers card on the Home dashboard view */
+      #view-home > .card {
         grid-column: 2;
         grid-row: 4;
         margin-bottom: 0;
